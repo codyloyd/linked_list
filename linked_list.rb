@@ -115,15 +115,30 @@ class LinkedList
 		end
 	end
 	# returns the node at a given index
-	def at
+	def at(index)
+		if self.size > index
+			if @head.next_node
+				node = @head.next_node
+				i = 0
+				until i == index
+					node = node.next_node
+					i += 1
+				end
+				return node
+			else
+				return nil
+			end
+		end
+		return nil
 	end
 	# that inserts the data after the given index
-	def insert_at(index)
-
+	def insert_at(index,value)
+		self.at(index-1).next_node = Node.new(value,self.at(index-1).next_node)
 	end
 	# that removes the node at the given index. (You will need to 
 	# update the links of your nodes in the list when you remove a node.)
 	def remove_at(index)
+		self.at(index-1).next_node = self.at(index).next_node
 	end
 
 end

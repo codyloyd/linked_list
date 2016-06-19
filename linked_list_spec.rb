@@ -114,13 +114,51 @@ describe 'linked_list' do
 		end	  
   	end
   	describe 'to_s' do
-  	before do
-  		@list.append(3)
-  		@list.append(4)
-  		@list.append(6)
+	  	before do
+	  		@list.append(3)
+	  		@list.append(4)
+	  		@list.append(6)
+	  	end
+	  	it 'works' do
+	  	    expect(@list.to_s).to eql("(3) -> (4) -> (6) -> nil")
+	  	end  
   	end
-  	it 'works' do
-  	    expect(@list.to_s).to eql("(3) -> (4) -> (6) -> nil")
-  	end  
+  	describe 'at' do
+	  	before do
+	  		@list.append(3)
+	  		@list.append(4)
+	  		@list.append(6)
+	  	end	
+	  	it 'works if index is in range' do
+	  		expect(@list.at(2).value).to eql(6) 
+	  	end  
+	  	it 'returns nil if out of range' do
+	  		  expect(@list.at(7)).to eql(nil)   
+	  	end	  
+  	end
+  	describe 'insert at' do
+  	  before do
+  	  	@list.append(3)
+  	  	@list.append(4)
+  	  	@list.append(6)
+  	  	@list.insert_at(1,77)
+  	  end
+  	  it 'does something' do
+	  	  expect(@list.at(1).value).to eql(77)
+  	  end
+  	  it 'doesnt delete anything' do
+  	    expect(@list.size).to eql(4) 
+  	  end
+  	end
+  	describe 'remove at' do
+  	  before do
+  	  	@list.append(3)
+  	  	@list.append(4)
+  	  	@list.append(6)
+  	  	@list.remove_at(1)
+  	  end
+  	  it 'works' do
+  	    expect(@list.to_s).to eql("(3) -> (6) -> nil")
+  	  end
   	end
 end
