@@ -27,7 +27,11 @@ class LinkedList
 	# returns the last node in the list
 	def tail
 		if @head.next_node
-
+			node = @head.next_node
+			while node.next_node
+				node = node.next_node
+			end
+			node
 		else
 			@head
 		end
